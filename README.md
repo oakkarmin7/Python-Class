@@ -25,10 +25,111 @@ numpy.pluralized('image') # returns 'image'
 numpy.pluralized('goose') # returns 'goose'
 numpy.singularize('phenomena') # returns 'phenomena'
 ```
+```java
+public class Combination {
+
+	
+	public static void main(String[] args){
+		Object[] elements = new Object[] {'A','B','C','D','E'};
+		combination(elements,3);
+	}
+	
+	
+	public static void combination(Object[]  elements, int K){
+
+		// get the length of the array
+		// e.g. for {'A','B','C','D'} => N = 4 
+		int N = elements.length;
+		
+		if(K > N){
+			System.out.println("Invalid input, K > N");
+			return;
+		}
+		
+		// calculate the possible combinations
+		c(N,K);
+		
+		// init combination index array
+		int combination[] = new int[K];
+		
+
+		int r = 0; // index for combination array
+		int i = 0; // index for elements array
+		
+		while(r >= 0){
+		
+			// forward step if i < (N + (r-K))
+			if(i <= (N + (r - K))){
+					combination[r] = i;
+					
+				// if combination array is full print and increment i;
+				if(r == K-1){
+					print(combination, elements);
+					i++;				
+				}
+				else{
+					// if combination is not full yet, select next element
+					i = combination[r]+1;
+					r++;										
+				}
+				
+			}
+			
+			// backward step
+			else{
+				r--;
+				if(r >= 0)
+					i = combination[r]+1;
+				
+			}			
+		}
+	}
+	
+
+	
+	private static int c(int n, int r){
+		int nf=fact(n);
+		int rf=fact(r);
+		int nrf=fact(n-r);
+		int npr=nf/nrf;
+		int ncr=npr/rf; 
+		
+		System.out.println("C("+n+","+r+") = "+ ncr);
+
+		return ncr;
+	}
+	
+	private static int fact(int n)
+	{
+		if(n == 0)
+			return 1;
+		else
+			return n * fact(n-1);
+	}
+	
+
+	private static void print(int[] combination, Object[] elements){
+
+		String output = "";
+		for(int z = 0 ; z < combination.length;z++){
+			output += elements[combination[z]];
+		}
+		System.out.println(output);
+	}
+}
+```
 
 
-![alt text](http://www.stellaandchewys.com/wp-content/upload/malechristms.jpg)
+
+
+
+![alt text](https://d17fnq9dkz9hgj.cloudfront.net/uploads/2012/11/153558006-tips-healthy-cat-632x475.jpg)
 ![alt text](http://static01.nyt.com/2014/01/28/science/28SlOT_SPAN/28SLOT-jumbo.jpg)
+![alt ironman](https://www.gematsu.com/wp-content/uploads/2019/03/Iron-Man-VR_03-25-19.jpg)
+
+<img src="https://www.gematsu.com/wp-content/uploads/2019/03/Iron-Man-VR_03-25-19.jpg" width="193" height="130">
+<img src="" width="300" height="">
+
 
 
 ##Contributing
@@ -62,11 +163,19 @@ Please make sure to update testds as appropriste
 !text in orange
 #text in grey
 ```
+```diff
+-Red
++Green
+!Orange
+#Grey
+```
 
 ``diff
 -text
 +word
 !character
 #string
+
+[Okkr Min](https://www.facebook.com/okkrmin.info)
 
 [MIT](http://cgooselicnse.com//licenses/mit)
